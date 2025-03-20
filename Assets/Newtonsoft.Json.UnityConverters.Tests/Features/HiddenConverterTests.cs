@@ -16,7 +16,7 @@ namespace Newtonsoft.Json.UnityConverters.Tests
         }
 
 
-        [JsonConverterOptions(Hidden = true)]
+        [HideInJsonConverterSettings]
         internal class HiddenConverter : JsonConverter
         {
             public override bool CanConvert(Type objectType) => false;

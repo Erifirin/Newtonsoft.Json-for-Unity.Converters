@@ -196,17 +196,10 @@ namespace Newtonsoft.Json.UnityConverters
                 .Where(type
                     => typeof(JsonConverter).IsAssignableFrom(type)
                     && !type.IsAbstract && !type.IsGenericTypeDefinition
-                    && !IsHidden(type)
+                    && !type.IsDefined(typeof(HideInJsonConverterSettings))
                     && type.GetConstructor(Array.Empty<Type>()) != null
                 )
                 .OrderBy(type => type.FullName);
-
-
-            static bool IsHidden(Type t)
-            {
-                var options = t.GetCustomAttribute<JsonConverterOptionsAttribute>();
-                return options != null && options.Hidden;
-            }
         }
 
         /// <summary>
